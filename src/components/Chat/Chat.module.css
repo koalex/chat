@@ -1,0 +1,41 @@
+.container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 56px;
+  margin-bottom: 140px;
+  padding: 8px;
+}
+
+.messagesList {
+  flex-grow: 1;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  padding: 0 20px 20px 20px;
+  background-color: #fff;
+}
+
+.message:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.selfMessage {
+  align-self: flex-end;
+  color: #fff !important;
+  background-color: green !important;
+}
+
+.textarea {
+  flex-grow: 1;
+  margin-right: 10px !important;
+}

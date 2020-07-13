@@ -1,0 +1,260 @@
+{
+  "name": "chat",
+  "main": "build/index.html",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "test:cover": "react-app-rewired test --coverage",
+    "eject": "react-scripts eject",
+    "lint-staged": "lint-staged",
+    "commit": "./node_modules/cz-customizable/standalone.js",
+    "release:patch": "dotenv release-it patch",
+    "release:minor": "dotenv release-it minor",
+    "release:major": "dotenv release-it major"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "release-it": {
+    "hooks": {
+      "before:init": [
+        "npm test"
+      ]
+    },
+    "npm": {
+      "publish": false
+    },
+    "git": {
+      "requireBranch": "master",
+      "commitMessage": "Release ${version}",
+      "tagAnnotation": "Release ${version}",
+      "tagName": "v${version}",
+      "commitArgs": "-S"
+    },
+    "github": {
+      "release": false,
+      "tokenRef": "RELEASE_IT_GITHUB_TOKEN"
+    },
+    "gitlab": {
+      "release": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --quiet --fix"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "airbnb",
+      "prettier",
+      "prettier/react",
+      "plugin:react/recommended",
+      "plugin:jest/recommended"
+    ],
+    "parser": "babel-eslint",
+    "plugins": [
+      "import",
+      "prettier",
+      "jest",
+      "react-hooks"
+    ],
+    "ignorePatterns": [
+      "**/node_modules/*"
+    ],
+    "rules": {
+      "no-console": [
+        "warn",
+        {
+          "allow": [
+            "warn",
+            "error",
+            "info"
+          ]
+        }
+      ],
+      "no-use-before-define": [
+        "error",
+        {
+          "functions": false,
+          "classes": true
+        }
+      ],
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allow": [
+            "__MOCK_SERVER__"
+          ]
+        }
+      ],
+      "prettier/prettier": [
+        "error",
+        {
+          "arrowParens": "avoid",
+          "trailingComma": "all",
+          "singleQuote": true,
+          "jsxSingleQuote": false
+        }
+      ],
+      "react/jsx-indent": [
+        "error",
+        2
+      ],
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "react/forbid-prop-types": [
+        "error",
+        {
+          "forbid": []
+        }
+      ],
+      "react/require-default-props": "off",
+      "jsx-a11y/media-has-caption": "off",
+      "jsx-a11y/anchor-is-valid": [
+        "error",
+        {
+          "components": [
+            "Link"
+          ],
+          "specialLink": [
+            "to",
+            "hrefLeft",
+            "hrefRight"
+          ],
+          "aspects": [
+            "noHref",
+            "invalidHref",
+            "preferButton"
+          ]
+        }
+      ],
+      "import/first": "error",
+      "import/no-unresolved": "off",
+      "import/no-duplicates": "error",
+      "import/prefer-default-export": "off",
+      "import/order": "off",
+      "import/newline-after-import": "error",
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            ".storybook/**/*.js",
+            "*.js",
+            "src/**/*.stories.js",
+            "src/**/*.test.js"
+          ]
+        }
+      ]
+    },
+    "env": {
+      "browser": true,
+      "jest": true
+    },
+    "settings": {
+      "import/ignore": [
+        {}
+      ]
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "koa": "^2.13.0",
+    "koa-conditional-get": "^2.0.0",
+    "koa-etag": "^3.0.0",
+    "koa-helmet": "^5.2.0",
+    "koa-static": "^5.0.0",
+    "koa2-cors": "^2.0.6",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-actions": "^2.6.5",
+    "redux-devtools-extension": "^2.13.8",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@release-it/conventional-changelog": "^1.1.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "commitizen": "^4.1.2",
+    "conventional-github-releaser": "^3.1.3",
+    "customize-cra": "^1.0.0",
+    "cz-customizable": "^6.2.0",
+    "dotenv": "^8.2.0",
+    "dotenv-cli": "^3.1.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jest": "^23.13.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.20.0",
+    "favicons-webpack-plugin": "^3.0.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.7",
+    "prettier": "^2.0.5",
+    "react-app-rewired": "^2.1.6",
+    "release-it": "^13.6.2"
+  },
+  "bugs": "https://github.com/koalex/chat/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/koalex/chat.git"
+  },
+  "contributors": [
+    {
+      "name": "Konstantin Aleksandrov",
+      "email": "alexandrovkm@gmail.com",
+      "url": "https://github.com/koalex"
+    }
+  ]
+}

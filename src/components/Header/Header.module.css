@@ -1,0 +1,20 @@
+.toolbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.logoContainer {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 20px;
+  height: 40px;
+}
+
+.App-link {
+  color: #000;
+  text-decoration: none;
+}

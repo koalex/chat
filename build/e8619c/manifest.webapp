@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "name": "chat",
+  "description": null,
+  "icons": {
+    "60": "/e8619c/firefox_app_60x60.png",
+    "128": "/e8619c/firefox_app_128x128.png",
+    "512": "/e8619c/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": null,
+    "url": null
+  }
+}
